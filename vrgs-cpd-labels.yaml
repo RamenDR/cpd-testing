@@ -1,0 +1,105 @@
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: ibm-common-services
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includedResources:
+      - operatorgroups
+      - scheduling
+      - configmaps
+      - recipe
+      - deployment
+      - serviceaccount
+      - rolebinding
+    recoverOrder:
+    - excludedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+    - includedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+      labelSelector:
+        matchLabels:
+         icpdsupport/addOnId: cpdbr
+          icpdsupport/app: br-service
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: cpd-operators
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includedResources:
+      - operatorgroups
+      - scheduling
+      - configmaps
+      - recipe
+      - deployment
+      - serviceaccount
+      - rolebinding
+    recoverOrder:
+    - excludedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+    - includedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+      labelSelector:
+        matchLabels:
+          icpdsupport/addOnId: cpdbr
+          icpdsupport/app: br-service
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: cpd-instance
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - excludedResources:
+      - event
+      - event.events.k8s.io
+      labelSelector:
+        matchExpressions:
+        - key: icpdsupport/ignore-on-nd-backup
+          operator: NotIn
+          values:
+					- "true"
+    recoverOrder:
+    - excludedResources:
+      - deployments.apps
+      - statefulsets.apps
+      - daemonsets.apps
+      - replicasets.apps
+      - controllerrevisions.apps
+      - cronjobs.batch
+      - jobs.batch
+      - pods
+      - operandrequests.operator.ibm.com
+      - clients
+      - imagetags.openshift.io
+    - includedResources:
+      - deployments.apps
+      - statefulsets.apps
+      - daemonsets.apps
+      - replicasets.apps
+      - controllerrevisions.apps
+      - cronjobs.batch
+      - jobs.batch
+    - includedResources:
+      - operandrequests.operator.ibm.com
