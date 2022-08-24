@@ -1,0 +1,36 @@
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: ibm-common-services
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includeClusterResources: true
+    recoverOrder:
+    - includeClusterResources: true
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: cpd-operators
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includeClusterResources: true
+    recoverOrder:
+    - includeClusterResources: true
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: cpd-instance
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includeClusterResources: true
+    recoverOrder:
+    - includeClusterResources: true

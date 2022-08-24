@@ -1,0 +1,115 @@
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: ibm-common-services
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includedResources:
+      - operatorgroups
+      - scheduling
+      - configmaps
+      - recipe
+      - deployment
+      - serviceaccount
+      - rolebinding
+      includeClusterResources: true
+    recoverOrder:
+    - excludedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+      includeClusterResources: true
+    - includedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+      includeClusterResources: true
+#      labelSelector:
+#        matchLabels:
+#         icpdsupport/addOnId: cpdbr
+#          icpdsupport/app: br-service
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: cpd-operators
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - includedResources:
+      - operatorgroups
+      - scheduling
+      - configmaps
+      - recipe
+      - deployment
+      - serviceaccount
+      - rolebinding
+      includeClusterResources: true
+    recoverOrder:
+    - excludedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+      includeClusterResources: true
+    - includedResources:
+      - configmaps
+      - deployment
+      - serviceaccount
+      - rolebinding
+      includeClusterResources: true
+#      labelSelector:
+#        matchLabels:
+#          icpdsupport/addOnId: cpdbr
+#          icpdsupport/app: br-service
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  namespace: cpd-instance
+spec:
+  replicationState: primary
+  kubeObjectProtection:
+    captureOrder:
+    - excludedResources:
+      - event
+      - event.events.k8s.io
+      includeClusterResources: true
+      labelSelector:
+        matchExpressions:
+        - key: icpdsupport/ignore-on-nd-backup
+          operator: NotIn
+          values:
+          - "true"
+    recoverOrder:
+    - excludedResources:
+      - deployments.apps
+      - statefulsets.apps
+      - daemonsets.apps
+      - replicasets.apps
+      - controllerrevisions.apps
+      - cronjobs.batch
+      - jobs.batch
+      - pods
+      - operandrequests.operator.ibm.com
+      - clients
+      - imagetags.openshift.io
+      includeClusterResources: true
+    - includedResources:
+      - deployments.apps
+      - statefulsets.apps
+      - daemonsets.apps
+      - replicasets.apps
+      - controllerrevisions.apps
+      - cronjobs.batch
+      - jobs.batch
+      includeClusterResources: true
+    - includedResources:
+      - operandrequests.operator.ibm.com
+      includeClusterResources: true
