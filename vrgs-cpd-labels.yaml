@@ -79,7 +79,7 @@ spec:
         - key: icpdsupport/ignore-on-nd-backup
           operator: NotIn
           values:
-					- "true"
+          - "true"
     recoverOrder:
     - excludedResources:
       - deployments.apps
