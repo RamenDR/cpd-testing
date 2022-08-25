@@ -4,8 +4,8 @@
 | ------------     | -------------| --- | --- 
 | Recipes translated to 3 VRGs, `labelSelector`s present | [vrgs-cpd-labels.yaml](vrgs-cpd-labels.yaml)|
 | Recipes translated to 3 VRGs, `labelSelector`s absent | [vrgs-cpd.yaml](vrgs-cpd.yaml)| [4 of 8 pods ready](test1results.md) | https://ibm-research.slack.com/archives/G01EC1VVA56/p1661300185045649
-| `KubeObjectProtection: {}` | [vrgs-cpd-everything-namespaced.yaml](vrgs-cpd-everything-namespaced.yaml)|[results]()
-| `KubeObjectProtection: includeClusterResources: true` | [vrgs-cpd-everything.yaml](vrgs-cpd-everything.yaml)|[results]()
+| `KubeObjectProtection: {}` | [vrgs-cpd-everything-namespaced.yaml](vrgs-cpd-everything-namespaced.yaml)
+| `KubeObjectProtection: includeClusterResources: true` | [vrgs-cpd-everything.yaml](vrgs-cpd-everything.yaml)
 
 ## Questions for Andy
 1. Which `github.ibm.com` organization and repos are the CPD code stored in?
