@@ -10,7 +10,7 @@
 ## Questions for Andy
 1. Which `github.ibm.com` organization and repos are the CPD code stored in?
    1. `github.ibm.com/IBMPrivateCloud`?
-   1. Can we get read access to them?
+   1. How can we get read access to them?
    1. Where are the recipe hook scripts located?
    ```yaml
     - command: '["/cpdbr-scripts/cpdops/files/cpd-operators.sh", "backup", "--backup-iam-data",
