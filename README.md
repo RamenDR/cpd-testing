@@ -9,6 +9,10 @@
 |1|none|1-5|[Offline procedure: Delete namespace, remove finalizers](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=obr-scenario-creating-offline-backup-cloud-pak-data-instance-restoring-it-same-cluster#concept_qpy_zpj_wqb__delete_namespaces)|options:<ul><li>VRG spec 1, hook, VRG spec 2<li>velero hooks<li>SPP method?<li>other| <ol><li>Leave `ibm-common-services` and `cpd-operators` namespaces<li>Recover `cpd-instance` namespace from VRG(s) and hooks| `cpd-instance` VRG derived from recipe, w/o hooks |  |  |
 |2|cpd-br tool?|1-5||
 
+## Hook setup and execution
+- https://ibm.ent.box.com/notes/1001273872485?s=u4u190uwzzhs943t2frtpzkyyc6uo7wy
+   - https://ibm-research.slack.com/archives/C03LJSJ9UES/p1661460825614769
+	
 ## Questions for Andy
 1. Which `github.ibm.com` organization and repos are the CPD code stored in?
    1. `github.ibm.com/IBMPrivateCloud`?
