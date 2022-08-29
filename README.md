@@ -6,7 +6,7 @@
 |1|VRGs|1-5|CPD undeploy procedure||VRGs derived from recipes w/ `labelSelector`s absent | [vrgs-cpd.yaml](vrgs-cpd.yaml)| [4 of 8 pods ready](test1results.md) | https://ibm-research.slack.com/archives/G01EC1VVA56/p1661300185045649
 |1|VRGs|1|CPD undeploy procedure||`KubeObjectProtection: {}` | [vrgs-cpd-everything-namespaced.yaml](vrgs-cpd-everything-namespaced.yaml)
 |1|VRGs|1|CPD undeploy procedure||`KubeObjectProtection: includeClusterResources: true` | [vrgs-cpd-everything.yaml](vrgs-cpd-everything.yaml)| | https://ibm-research.slack.com/archives/G01EC1VVA56/p1661445646846479
-|1|none|1-5|[Offline procedure: Delete namespace, remove finalizers](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=obr-scenario-creating-offline-backup-cloud-pak-data-instance-restoring-it-same-cluster#concept_qpy_zpj_wqb__delete_namespaces)|options:<ul><li>VRG spec 1, hook, VRG spec 2<li>velero hooks<li>SPP method?<li>other| <ol><li>Leave `ibm-common-services` and `cpd-operators` namespaces<li>Recover `cpd-instance` namespace from VRG(s) and hooks| `cpd-instance` VRG derived from recipe, w/o hooks |  |  |
+|1|none|1-5|[Offline procedure: Delete namespace, remove finalizers](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=obr-scenario-creating-offline-backup-cloud-pak-data-instance-restoring-it-same-cluster#concept_qpy_zpj_wqb__delete_namespaces)|options:<ul><li>VRG spec 1, hook, VRG spec 2<li>velero hooks<li>SPP method?<li>other| <ol><li>Leave `ibm-common-services` and `cpd-operators` namespaces<li>Recover `cpd-instance` namespace from VRG(s) and hooks| [vrg-capture.yaml](vrg-capture.yaml) [vrg-restore-1.yaml](vrg-restore-1.yaml) [vrg-restore-2.yaml](vrg-restore-2.yaml) |  |  |
 |2|cpd-br tool?|1-5||
 
 ## Hook setup and execution
