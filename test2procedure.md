@@ -1,6 +1,9 @@
 Leave `ibm-common-services` and `cpd-operators` namespaces
 Recover `cpd-instance` namespace from VRG(s) and hooks
 
+how to use the hooks:
+https://ibm.ent.box.com/notes/1001273872485?s=u4u190uwzzhs943t2frtpzkyyc6uo7wy
+
 backup:
   recipe:
   ```sh
