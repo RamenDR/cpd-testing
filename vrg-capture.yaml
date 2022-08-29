@@ -1,0 +1,31 @@
+---
+    apiVersion: ramendr.openshift.io/v1alpha1
+    kind: VolumeReplicationGroup
+    metadata:
+      name: ci
+      namespace: cpd-instance
+    spec:
+      async:
+        mode: Disabled
+        replicationClassSelector: {}
+        schedulingInterval: 1m
+      pvcSelector: {}
+      replicationState: primary
+      s3Profiles:
+       - minio-on-cluster1
+      sync:
+        mode: Enabled
+      volSync:
+        disabled: true
+      kubeObjectProtection:
+        captureOrder:
+        - excludedResources:
+          - event
+          - event.events.k8s.io
+          labelSelector:
+            matchExpressions:
+            - key: icpdsupport/ignore-on-nd-backup
+              operator: NotIn
+              values:
+              - "true"
+        
