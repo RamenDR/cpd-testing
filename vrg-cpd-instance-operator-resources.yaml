@@ -5,11 +5,6 @@
       name: ci
       namespace: cpd-instance
     spec:
-    kind: VolumeReplicationGroup
-    metadata:
-      name: ci
-      namespace: cpd-instance
-    spec:
       async:
         mode: Disabled
         replicationClassSelector: {}
