@@ -22,7 +22,7 @@ backup:
   1. run hook br-service-hooks/checkpoint
   2. run hook br-service-hooks/pre-backup
   3. run hook br-service-hooks/post-backup
-  4. create [vrg-capture](vrg-capture.yaml) as primary and wait for clusterdataprotected
+  4. create [vrg-capture](vrg-capture.yaml) in cpd-instance ns as primary and wait for clusterdataprotected
   5. set [vrg-capture](vrg-capture.yaml) as secondary
   6. delete cpd-instance ns following instructions here: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster
   7. set [vrg-capture](vrg-capture.yaml) back to primary
@@ -43,9 +43,10 @@ restore:
     
   procedure:
   ```sh
-  1. create [vrg-restore-1](vrg-restore-1.yaml) as primary and wait for clusterdataready
+  1. create cpd-instance ns
+  1. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
   2. run hook br-service-hooks/post-workload
-  3. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) as primary and wait for clusterdataready
+  3. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) in cpd-instance ns as primary and wait for clusterdataready
   4. check if cpd-instance ns resources are restored: 
   cpd-cli manage get-cr-status --cpd_instance_ns=${PROJECT_CPD_INSTANCE}, 
   check web console of cp4d: 
