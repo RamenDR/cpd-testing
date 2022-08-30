@@ -25,7 +25,6 @@ backup:
   4. create [vrg-capture](vrg-capture.yaml) in cpd-instance ns as primary and wait for clusterdataprotected
   5. set [vrg-capture](vrg-capture.yaml) as secondary
   6. delete cpd-instance ns following instructions here: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster
-  7. set [vrg-capture](vrg-capture.yaml) back to primary
   ```
   
 restore:
