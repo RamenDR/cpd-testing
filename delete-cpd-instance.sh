@@ -103,6 +103,7 @@ done
 
 vrg=$(oc get vrg -n $ns | awk '{print $1}')
 for i in $vrg
+do
     oc patch vrg $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
     oc delete vrg $i -n $ns
 done
