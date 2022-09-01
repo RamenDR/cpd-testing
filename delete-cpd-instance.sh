@@ -46,13 +46,26 @@ done
 
 
 # Get Db2assservice CR, delete finalizers and delete CR
-db2=$(oc get Db2aaserviceService -n wkc | awk '{print $1}')
+db2=$(oc get db2aaserviceservices.databases.cpd.ibm.com -n $ns | awk '{print $1}')
 for i in $db2
 do
-    oc patch Db2aaserviceService $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
-    oc delete Db2aaserviceService $i -n $ns
+    oc patch db2aaserviceservices.databases.cpd.ibm.com $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete db2aaserviceservices.databases.cpd.ibm.com $i -n $ns
 done
 
+db2wh=$(oc get db2whservices.databases.cpd.ibm.com -n $ns | awk '{print $1}')
+for i in $db2wh
+do
+    oc patch db2whservices.databases.cpd.ibm.com $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete db2whservices.databases.cpd.ibm.com $i -n $ns
+done
+
+dmcs=$(oc get dmcs.dmc.databases.ibm.com -n $ns | awk '{print $1}')
+for i in $dmcs
+do
+    oc patch dmcs.dmc.databases.ibm.com $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete dmcs.dmc.databases.ibm.com $i -n $ns
+done
 
 or=$(oc get operandrequest -n $ns | awk '{print $1}')
 for i in $or
