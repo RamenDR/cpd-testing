@@ -67,6 +67,35 @@ do
     oc delete zenservice $i -n $ns
 done
 
+db=$(oc get databases.cpd.ibm.com -n $ns | awk '{print $1}')
+for i in $db
+do
+    oc patch databases.cpd.ibm.com $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete databases.cpd.ibm.com $i -n $ns
+done
+
+dmc=$(oc get dmc.databases.ibm.com -n $ns | awk '{print $1}')
+for i in $dmc
+do
+    oc patch dmc.databases.ibm.com $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete dmc.databases.ibm.com $i -n $ns
+done
+
+pvc=$(oc get pvc -n $ns | awk '{print $1}')
+for i in $pvc
+do
+    oc patch pvc $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete pvc $i -n $ns
+done
+
+vrg=$(oc get vrg -n $ns | awk '{print $1}')
+for i in $vrg
+    oc patch vrg $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete vrg $i -n $ns
+done
+
+
+
 oc patch rolebinding admin -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
 #oc edit namespacescope cpd-operators -n $ns
 # Remove $ns Namespace from namespaceMembers field
