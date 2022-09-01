@@ -1,1 +1,2 @@
-kubectl exec -it cpdbr-service-57597df6c5-jqqcv -n cpd-instance -- /cpdbr-scripts/cpdbr/checkpoint_create.sh --include-namespaces=cpd-instance
+pod=$(kubectl get pod -n cpd-instance -l component=cpdbr-hooks | awk 'NR==2' | awk {'print $1'})
+kubectl exec -it $pod -n cpd-instance -- /cpdbr-scripts/cpdbr/checkpoint_create.sh --include-namespaces=cpd-instance

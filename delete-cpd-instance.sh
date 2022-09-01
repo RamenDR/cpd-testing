@@ -75,4 +75,4 @@ oc patch rolebinding admin -n $ns -p '{"metadata":{"finalizers":[]}}' --type=mer
 # Remove $ns Namespace from namespaceMembers field
 #oc patch namespacescope cpd-operators -n <cpd_operators_project_name> -p $'{"spec":{"namespaceMembers":["<remaining-namespaces"]}}' --type=merge
 oc delete project $ns
-oc get project cpd-instance -o jsonpath="{.status}"
+oc get project $ns -o jsonpath="{.status}"
