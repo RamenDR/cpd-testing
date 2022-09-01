@@ -19,12 +19,13 @@ backup:
 
   procedure:
   ```sh
-  1. run hook br-service-hooks/checkpoint
-  2. run hook br-service-hooks/pre-backup
-  3. run hook br-service-hooks/post-backup
+  1. run hook br-service-hooks/checkpoint (checkpoint.sh)
+  2. run hook br-service-hooks/pre-backup (pre-backup.sh)
+  3. run hook br-service-hooks/post-backup (post-backup.sh)
   4. create [vrg-capture](vrg-capture.yaml) in cpd-instance ns as primary and wait for clusterdataprotected
-  5. set [vrg-capture](vrg-capture.yaml) as secondary
-  6. delete cpd-instance ns following instructions here: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster
+  5. check minio content: vrg, persistent volume, kubeobjects
+  6. set [vrg-capture](vrg-capture.yaml) as secondary
+  7. delete cpd-instance ns following instructions here: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster (delete-cpd-instance.sh)
   ```
   
 restore:
@@ -43,11 +44,13 @@ restore:
   procedure:
   ```sh
   1. create cpd-instance ns
-  1. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
-  2. run hook br-service-hooks/post-workload
-  3. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) in cpd-instance ns as primary and wait for clusterdataready
-  4. check if cpd-instance ns resources are restored: 
-  cpd-cli manage get-cr-status --cpd_instance_ns=${PROJECT_CPD_INSTANCE}, 
-  check web console of cp4d: 
-  cpd-cli manage get-cpd-instance-details --cpd_instance_ns=${PROJECT_CPD_INSTANCE} --get_admin_initial_credentials=true
+  2. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
+  3. check if pods are coming back in cpd-instance ns
+  4. run hook br-service-hooks/post-workload (post-workload.sh)
+  5. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) in cpd-instance ns as primary and wait for clusterdataready
+  6. check if cpd-instance ns resources are restored: 
+  (cpd-cli can be installed here: https://github.com/IBM/cpd-cli)
+  cpd-cli manage get-cr-status --cpd_instance_ns=cpd-instance
+  7. check web console of cp4d: 
+  cpd-cli manage get-cpd-instance-details --cpd_instance_ns=cpd-instance --get_admin_initial_credentials=true
   ```
