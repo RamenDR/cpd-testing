@@ -3,6 +3,8 @@ Recover `cpd-instance` namespace from VRG(s) and hooks
 
 how to use the hooks:
 https://ibm.ent.box.com/notes/1001273872485?s=u4u190uwzzhs943t2frtpzkyyc6uo7wy
+install spp:
+https://www.ibm.com/docs/en/spp/10.1.7?topic=platform-installing-operator-in-online-environment
 
 backup:
   recipe:
@@ -25,7 +27,8 @@ backup:
   4. create [vrg-capture](vrg-capture.yaml) in cpd-instance ns as primary and wait for clusterdataprotected
   5. check minio content: vrg, persistent volume, kubeobjects
   6. set [vrg-capture](vrg-capture.yaml) as secondary
-  7. delete cpd-instance ns following instructions here: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster (delete-cpd-instance.sh)
+  7. delete cpd-instance ns following instructions here: (delete-cpd-instance.sh)
+  https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster 
   ```
   
 restore:
