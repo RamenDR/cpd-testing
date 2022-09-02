@@ -1,4 +1,14 @@
 ```sh
+$ oc get po -ncpd-instance|grep Running|wc -l
+103
+$ oc get po -ncpd-instance|grep Error|wc -l
+1
+$ oc get po -ncpd-instance|grep CrashLoopBackOff|wc -l
+24
+$ oc get po -ncpd-instance|grep Completed|wc -l
+30
+$ oc get po -ncpd-instance|grep Init:[0-9]|wc -l
+8
 $ oc get po -ncpd-instance
 NAME                                                          READY   STATUS                  RESTARTS          AGE
 asset-files-api-6cc4fb7f95-lm7vr                              1/1     Running                 0                 20h
@@ -169,16 +179,6 @@ zen-metastoredb-init-b5lsk                                    0/1     Completed 
 zen-watchdog-54c8478479-t257c                                 0/1     Init:CrashLoopBackOff   249 (97s ago)     20h
 zen-watcher-c56dc769c-zzhgz                                   0/1     Init:CrashLoopBackOff   249 (4m43s ago)   20h
 zookeeper-0                                                   0/1     Error                   234 (5m41s ago)   21h
-$ oc get po -ncpd-instance|grep Running|wc -l
-103
-$ oc get po -ncpd-instance|grep Error|wc -l
-1
-$ oc get po -ncpd-instance|grep CrashLoopBackOff|wc -l
-24
-$ oc get po -ncpd-instance|grep Completed|wc -l
-30
-$ oc get po -ncpd-instance|grep Init:[0-9]|wc -l
-8
 ```
 
 pod:
