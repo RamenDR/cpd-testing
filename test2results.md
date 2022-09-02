@@ -1,3 +1,186 @@
+```sh
+$ oc get po -ncpd-instance
+NAME                                                          READY   STATUS                  RESTARTS          AGE
+asset-files-api-6cc4fb7f95-lm7vr                              1/1     Running                 0                 20h
+audit-trail-service-78ff684448-zd86r                          0/1     CrashLoopBackOff        172 (101s ago)    20h
+ax-cdsx-jupyter-notebooks-converter-deploy-544cd9745b-47f5g   1/1     Running                 0                 20h
+ax-cdsx-notebooks-job-manager-deploy-687ff569d6-44nk9         1/1     Running                 0                 20h
+ax-environments-api-deploy-cc8649dc5-lgx99                    1/1     Running                 0                 20h
+ax-environments-ui-deploy-f5d7b7679-nw77l                     1/1     Running                 0                 20h
+ax-wdp-notebooks-api-deploy-775fb87f75-8gqlx                  1/1     Running                 0                 20h
+ax-ws-notebooks-ui-deploy-7877d8777b-7jvpd                    1/1     Running                 0                 20h
+c-db2oltp-iis-instdb-zfhsq                                    0/1     Completed               0                 21h
+c-db2oltp-wkc-instdb-h2khx                                    0/1     Completed               0                 21h
+c-db2wh-1660755029164296-etcd-0                               1/1     Running                 0                 21h
+c-db2wh-1660755029164296-instdb-ccwrj                         0/1     Completed               0                 21h
+c-ibm-dmc-1660756001756623-redis-m-0                          3/4     Running                 0                 21h
+c-ibm-dmc-1660756001756623-redis-m-1                          3/4     Running                 0                 21h
+c-ibm-dmc-1660756001756623-redis-m-2                          3/4     Running                 0                 21h
+c-ibm-dmc-1660756001756623-redis-s-0                          4/4     Running                 0                 20h
+c-ibm-dmc-1660756001756623-redis-s-1                          4/4     Running                 0                 20h
+c-ibm-dmc-1660756001756623-redis-s-2                          4/4     Running                 0                 20h
+catalog-api-6c67fbb74-bhfm7                                   0/1     Running                 207 (4m17s ago)   20h
+catalog-api-6c67fbb74-n95rb                                   0/1     Running                 168 (78s ago)     20h
+cpdbr-service-57597df6c5-s98xv                                1/1     Running                 0                 20h
+create-secrets-job-gdhkd                                      0/1     Completed               0                 20h
+dap-dashboards-api-748dc884f-bt6h9                            1/1     Running                 0                 20h
+dataview-api-service-64d9687486-nzdvf                         1/1     Running                 0                 20h
+dc-main-5c675b467-98q2l                                       1/1     Running                 0                 20h
+dp-transform-6fcd75c994-gzw2m                                 0/1     Running                 57 (87s ago)      20h
+dsx-influxdb-0                                                1/1     Running                 0                 20h
+elasticsearch-master-0                                        3/3     Running                 0                 20h
+elasticsearch-master-1                                        3/3     Running                 0                 20h
+elasticsearch-master-2                                        3/3     Running                 0                 20h
+env-spec-sync-job-27702395-wq2v9                              0/1     Completed               0                 3m32s
+event-logger-api-57c8f5cbbc-rzfqj                             1/1     Running                 4 (20h ago)       20h
+finley-ml-7d968d45d5-76smd                                    1/1     Running                 0                 20h
+finley-public-6988984f58-ppfzv                                1/1     Running                 0                 20h
+gov-admin-ui-dfd8d68c7-g87wq                                  1/1     Running                 0                 20h
+gov-app-config-service-d467c96c9-cv684                        0/1     CrashLoopBackOff        174 (3m48s ago)   20h
+gov-catalog-search-index-c8f9c765b-fb8kw                      0/1     CrashLoopBackOff        248 (2m9s ago)    20h
+gov-catalog-search-service-575c8db95c-tc9rg                   1/1     Running                 179 (2m56s ago)   20h
+gov-quality-ui-6b4d4ffc9b-rf2h4                               1/1     Running                 0                 20h
+gov-ui-commons-685b76bc6d-x6xwj                               1/1     Running                 0                 20h
+gov-user-prefs-service-858ddddcd-z6rc2                        0/1     CrashLoopBackOff        174 (3m36s ago)   20h
+ia-analysis-8f54b7d69-fvh95                                   0/1     CrashLoopBackOff        210 (4m17s ago)   20h
+ibm-0100-model-viewer-prod-5576658c7c-9bssq                   1/1     Running                 0                 20h
+ibm-dmc-1660756001756623-admin-79d7b79bbb-csl6t               0/1     CrashLoopBackOff        244 (3m29s ago)   20h
+ibm-dmc-1660756001756623-admin-79d7b79bbb-g7ks5               0/1     CrashLoopBackOff        245 (80s ago)     20h
+ibm-dmc-1660756001756623-dbapi-5fdc694b5b-f58lv               0/1     CrashLoopBackOff        245 (4m19s ago)   20h
+ibm-dmc-1660756001756623-dbapi-5fdc694b5b-n7csk               0/1     CrashLoopBackOff        246 (13s ago)     20h
+ibm-dmc-1660756001756623-explain-567678697d-j6m5s             0/1     CrashLoopBackOff        242 (97s ago)     20h
+ibm-dmc-1660756001756623-job-scheduler-5c485fc9c7-qkk8c       0/1     Init:0/1                0                 20h
+ibm-dmc-1660756001756623-monitor-0                            0/1     Init:1/2                0                 20h
+ibm-dmc-1660756001756623-nginx-5444855fc7-6phgf               0/1     Running                 229 (2m31s ago)   20h
+ibm-dmc-1660756001756623-nginx-5444855fc7-j4d7d               0/1     CrashLoopBackOff        229 (51s ago)     20h
+ibm-dmc-1660756001756623-registry-manager-6bd8b4d647-b8pqw    0/1     Init:0/1                0                 20h
+ibm-dmc-1660756001756623-registry-manager-759cd44f59-zw6zn    0/1     Init:0/1                0                 20h
+ibm-dmc-1660756001756623-runsql-0                             0/1     CrashLoopBackOff        245 (3m25s ago)   20h
+ibm-dmc-addon-api-59cd4bd58f-nv7pg                            1/1     Running                 0                 21h
+ibm-dmc-addon-ui-67d7668854-pxcxb                             1/1     Running                 0                 21h
+ibm-nginx-554bf9d9b8-gtzjq                                    0/1     CrashLoopBackOff        281 (3m59s ago)   20h
+ibm-nginx-554bf9d9b8-v9frx                                    0/1     CrashLoopBackOff        281 (4m1s ago)    20h
+ibm-nginx-tester-b4656f796-jdl9s                              0/1     CrashLoopBackOff        281 (4m2s ago)    20h
+igc-ui-react-68dd7b9d5d-8229m                                 1/1     Running                 0                 20h
+iis-services-6fc6c85b5-v8wvj                                  0/1     Init:0/1                0                 20h
+init-runtime-py39main-h8g9v                                   0/1     Completed               0                 176m
+is-en-conductor-0                                             0/1     Init:1/2                0                 20h
+is-engine-compute-0                                           1/1     Running                 0                 20h
+jobs-api-5fdfdcf59c-l9l6z                                     1/1     Running                 0                 20h
+jobs-ui-644c46d99d-9w55r                                      1/1     Running                 0                 20h
+kafka-0                                                       0/1     CrashLoopBackOff        228 (74s ago)     20h
+knowledge-accelerators-6c4c4b856b-2nq49                       1/1     Running                 0                 20h
+metadata-discovery-cbf7fb774-sk7zj                            1/1     Running                 0                 20h
+ngp-projects-api-c597d8647-k2cl6                              1/1     Running                 0                 20h
+odf-fast-analyzer-74978d759c-t4v8t                            0/1     Init:0/1                0                 20h
+omag-8684d687f6-mchhw                                         0/1     Init:0/1                0                 20h
+portal-catalog-788d85749-cwnxv                                1/1     Running                 0                 20h
+portal-common-api-74db9cb44c-dwwtx                            1/1     Running                 0                 20h
+portal-dashboards-b7bfc96d-hrnfz                              1/1     Running                 0                 20h
+portal-job-manager-f599fcb44-2744x                            1/1     Running                 4 (20h ago)       20h
+portal-main-75ddcb74b9-k2hcp                                  1/1     Running                 0                 20h
+portal-ml-dl-dbdd49fdf-gwwfn                                  1/1     Running                 0                 20h
+portal-notifications-75bcdf6fcb-rrgk5                         1/1     Running                 1 (20h ago)       20h
+portal-projects-555d865f4c-tljln                              1/1     Running                 0                 20h
+rabbitmq-ha-0                                                 1/1     Running                 0                 20h
+rabbitmq-ha-1                                                 1/1     Running                 0                 20h
+rabbitmq-ha-2                                                 1/1     Running                 0                 20h
+redis-ha-haproxy-7d6d977b64-mhm4j                             1/1     Running                 1 (20h ago)       20h
+redis-ha-server-0                                             2/2     Running                 0                 20h
+redis-ha-server-1                                             2/2     Running                 0                 20h
+redis-ha-server-2                                             2/2     Running                 0                 20h
+runtime-assemblies-operator-5d64ccbf57-pv2vs                  1/1     Running                 0                 20h
+runtime-manager-api-777fb565f5-l84sc                          0/1     CrashLoopBackOff        322 (91s ago)     20h
+shop4info-mappers-service-0                                   0/1     Running                 134 (105s ago)    20h
+solr-0                                                        0/1     CrashLoopBackOff        341 (10s ago)     20h
+spaces-68cdff6cbf-tr49n                                       0/1     Running                 249 (4m53s ago)   20h
+spark-hb-br-recovery-644b545d79-ldj28                         1/1     Running                 0                 20h
+spark-hb-control-plane-5d68c95cd4-qk9jt                       2/2     Running                 0                 20h
+spark-hb-create-trust-store-7bf46f4976-smmc7                  1/1     Running                 4 (21h ago)       21h
+spark-hb-deployer-agent-7548d79f6b-5qkc2                      1/1     Running                 0                 21h
+spark-hb-helm-repo-5656fcbfc4-xgljs                           1/1     Running                 0                 20h
+spark-hb-job-cleanup-cron-27702390-zhtns                      0/1     Completed               0                 8m31s
+spark-hb-kernel-cleanup-cron-27702390-zv67b                   0/1     Completed               0                 8m31s
+spark-hb-nginx-67c65f5675-pms62                               1/1     Running                 0                 20h
+spark-hb-preload-jkg-image-27702360-42qcz                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-4bn8c                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-4dswf                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-5gmq7                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-5lwqb                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-5mh79                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-7kjrj                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-8jjng                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-8v5dw                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-9mhf6                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-9wtwh                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-bmkrm                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-dpp2k                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-fqggc                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-hj89h                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-mpn8t                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-sj8hz                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-t5x72                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-vrd9p                     0/2     Completed               0                 38m
+spark-hb-preload-jkg-image-27702360-zkdj8                     0/2     Completed               0                 38m
+spark-hb-register-hb-dataplane-5c4595f67-6l7vv                0/1     CrashLoopBackOff        240 (4m38s ago)   20h
+ug-roles-init-gjvx7                                           0/1     Error                   0                 9m53s
+usermgmt-f8749f4f6-jkzsw                                      0/1     CrashLoopBackOff        249 (25s ago)     20h
+usermgmt-f8749f4f6-tmrqf                                      0/1     CrashLoopBackOff        250 (19s ago)     20h
+volumes-profstgintrnl-deploy-68dcd9f69b-xfrxn                 0/1     CrashLoopBackOff        281 (4m58s ago)   20h
+wdp-connect-connection-df46f7795-6gt8f                        0/1     Running                 125 (4m17s ago)   20h
+wdp-connect-connector-5776d8b45d-jzv5s                        1/1     Running                 0                 20h
+wdp-connect-flight-bf4dbbfff-865fc                            1/1     Running                 0                 20h
+wdp-couchdb-0                                                 2/2     Running                 0                 20h
+wdp-couchdb-1                                                 2/2     Running                 0                 20h
+wdp-couchdb-2                                                 2/2     Running                 0                 20h
+wdp-dataprep-79b877879b-576gp                                 1/1     Running                 0                 20h
+wdp-dataview-59fdff9cf7-52frx                                 1/1     Running                 0                 20h
+wdp-lineage-5bf96fb9d4-5brxk                                  0/1     Running                 56 (21m ago)      20h
+wdp-policy-service-d7458bf45-2sl56                            0/1     Running                 56 (21m ago)      20h
+wdp-profiling-6c66969cb5-d6q9j                                1/1     Running                 0                 20h
+wdp-profiling-messaging-74f5d5b6d9-tn5s9                      1/1     Running                 0                 20h
+wdp-profiling-ui-7b8667b596-tnd75                             1/1     Running                 0                 20h
+wdp-search-5f499d7874-628pr                                   1/1     Running                 0                 20h
+wdp-shaper-f448d46f7-r9r7c                                    1/1     Running                 0                 20h
+wkc-bi-data-service-94b8c8bc5-mfn85                           0/1     Running                 56 (21m ago)      20h
+wkc-glossary-service-5498865d8d-ll2v5                         0/1     Running                 57 (11s ago)      20h
+wkc-glossary-service-sync-cronjob-27701731-jt87z              1/1     Running                 4 (47m ago)       10h
+wkc-gov-ui-77d8b9b97-ntwl5                                    1/1     Running                 0                 20h
+wkc-mde-service-manager-7dbdfbff44-pglph                      1/1     Running                 0                 20h
+wkc-metadata-imports-ui-85ccfcd8cf-6pm6q                      1/1     Running                 0                 20h
+wkc-search-7b594f7ffd-28kgq                                   1/1     Running                 1 (20h ago)       20h
+wkc-term-assignment-7b4b8fcdb9-7wdvs                          1/1     Running                 0                 20h
+wkc-workflow-service-5f79cf75b9-z7mx7                         0/1     Running                 19 (18m ago)      20h
+wml-main-6b9c94b9bf-4xwqd                                     1/1     Running                 0                 20h
+zen-audit-d4bbd6456-gdjpp                                     1/1     Running                 0                 20h
+zen-core-868bcfff6d-lh8nh                                     0/1     Running                 317 (55s ago)     20h
+zen-core-868bcfff6d-mjzr2                                     0/1     Running                 317 (23s ago)     20h
+zen-core-api-669d6579c-lgbw8                                  0/1     Init:CrashLoopBackOff   249 (4m17s ago)   20h
+zen-core-api-669d6579c-nbkwm                                  0/1     Init:CrashLoopBackOff   249 (3m9s ago)    20h
+zen-data-sorcerer-bfdb5cc54-vcfp9                             1/1     Running                 0                 20h
+zen-database-core-5898ddfc9b-h8dd6                            1/1     Running                 0                 21h
+zen-databases-5bdfbd8555-6686c                                0/1     CrashLoopBackOff        317 (4m50s ago)   21h
+zen-databases-5bdfbd8555-zvsff                                0/1     CrashLoopBackOff        317 (4m49s ago)   21h
+zen-metastoredb-0                                             1/1     Running                 0                 20h
+zen-metastoredb-1                                             1/1     Running                 0                 20h
+zen-metastoredb-2                                             1/1     Running                 0                 20h
+zen-metastoredb-certs-jk4xn                                   0/1     Completed               0                 20h
+zen-metastoredb-init-b5lsk                                    0/1     Completed               0                 20h
+zen-watchdog-54c8478479-t257c                                 0/1     Init:CrashLoopBackOff   249 (97s ago)     20h
+zen-watcher-c56dc769c-zzhgz                                   0/1     Init:CrashLoopBackOff   249 (4m43s ago)   20h
+zookeeper-0                                                   0/1     Error                   234 (5m41s ago)   21h
+$ oc get po -ncpd-instance|grep Running|wc -l
+103
+$ oc get po -ncpd-instance|grep Error|wc -l
+1
+$ oc get po -ncpd-instance|grep CrashLoopBackOff|wc -l
+24
+$ oc get po -ncpd-instance|grep Completed|wc -l
+30
+$ oc get po -ncpd-instance|grep Init:[0-9]|wc -l
+8
+```
+
 pod:
 audit-trail-service-78ff684448-zd86r,
 gov-app-config-service-d467c96c9-cv684,
