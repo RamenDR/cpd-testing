@@ -211,18 +211,13 @@ cp: preserving times for '/cc-home/_global_/security': Operation not permitted
 cp: preserving times for '/cc-home/_global_/wkc_bg': Operation not permitted
 cp: preserving times for '/cc-home/_global_': Operation not permitted
 ```
-ibm-dmc-1660756001756623-job-scheduler-5c485fc9c7-qkk8c
+ibm-dmc-1660756001756623-job-scheduler-5c485fc9c7-qkk8c, ibm-dmc-1660756001756623-registry-manager-6bd8b4d647-b8pqw
 ```sh
 waiting uc services
 ```
 ibm-dmc-1660756001756623-monitor-0
 ```sh
 waiting ibm-dmc-1660756001756623-dbapi
-```
-
-ibm-dmc-1660756001756623-registry-manager-6bd8b4d647-b8pqw
-```sh
-waiting uc services
 ```
 
 iis-services-6fc6c85b5-v8wvj
