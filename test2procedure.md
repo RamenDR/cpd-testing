@@ -49,6 +49,7 @@ restore:
   ```sh
   1. create cpd-instance ns
   2. modify ns to the backuped ns uid: 1000740000 ($kubectl edit ns cpd-instance)
+  (3. re-restore: kubectl annotate pv $i volumereplicationgroups.ramendr.openshift.io/ramen-restore- )
   3. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
   4. check if pods are coming back in cpd-instance ns
   5. run hook br-service-hooks/post-workload (post-workload.sh)
