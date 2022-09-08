@@ -1,0 +1,125 @@
+{
+  "kind": "Backup",
+  "apiVersion": "velero.io/v1",
+  "metadata": {
+    "name": "cpd-instance--ci--1----minio-on-cluster1",
+    "namespace": "openshift-adp",
+    "uid": "b82aefbf-9e19-4e55-b491-f44fe4505981",
+    "resourceVersion": "21715603",
+    "generation": 2,
+    "creationTimestamp": "2022-09-01T20:08:02Z",
+    "labels": {
+      "ramendr.openshift.io/owner-name": "ci",
+      "ramendr.openshift.io/owner-namespace-name": "cpd-instance",
+      "velero.io/storage-location": "cpd-instance--ci--1----minio-on-cluster1"
+    },
+    "annotations": {
+      "velero.io/source-cluster-k8s-gitversion": "v1.23.5+3afdacb",
+      "velero.io/source-cluster-k8s-major-version": "1",
+      "velero.io/source-cluster-k8s-minor-version": "23"
+    },
+    "managedFields": [
+      {
+        "manager": "manager",
+        "operation": "Update",
+        "apiVersion": "velero.io/v1",
+        "time": "2022-09-01T20:08:02Z",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:labels": {
+              ".": {},
+              "f:ramendr.openshift.io/owner-name": {},
+              "f:ramendr.openshift.io/owner-namespace-name": {}
+            }
+          },
+          "f:spec": {
+            ".": {},
+            "f:defaultVolumesToRestic": {},
+            "f:excludedResources": {},
+            "f:hooks": {},
+            "f:includedNamespaces": {},
+            "f:labelSelector": {
+              ".": {},
+              "f:matchExpressions": {}
+            },
+            "f:metadata": {},
+            "f:snapshotVolumes": {},
+            "f:storageLocation": {}
+          },
+          "f:status": {}
+        }
+      },
+      {
+        "manager": "velero-server",
+        "operation": "Update",
+        "apiVersion": "velero.io/v1",
+        "time": "2022-09-01T20:08:03Z",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:annotations": {
+              ".": {},
+              "f:velero.io/source-cluster-k8s-gitversion": {},
+              "f:velero.io/source-cluster-k8s-major-version": {},
+              "f:velero.io/source-cluster-k8s-minor-version": {}
+            },
+            "f:labels": {
+              "f:velero.io/storage-location": {}
+            }
+          },
+          "f:spec": {
+            "f:csiSnapshotTimeout": {},
+            "f:ttl": {}
+          },
+          "f:status": {
+            "f:expiration": {},
+            "f:formatVersion": {},
+            "f:phase": {},
+            "f:startTimestamp": {},
+            "f:version": {}
+          }
+        }
+      }
+    ]
+  },
+  "spec": {
+    "metadata": {},
+    "includedNamespaces": [
+      "cpd-instance"
+    ],
+    "excludedResources": [
+      "event",
+      "event.events.k8s.io"
+    ],
+    "labelSelector": {
+      "matchExpressions": [
+        {
+          "key": "icpdsupport/ignore-on-nd-backup",
+          "operator": "NotIn",
+          "values": [
+            "true"
+          ]
+        }
+      ]
+    },
+    "snapshotVolumes": false,
+    "ttl": "720h0m0s",
+    "hooks": {},
+    "storageLocation": "cpd-instance--ci--1----minio-on-cluster1",
+    "defaultVolumesToRestic": false,
+    "csiSnapshotTimeout": "10m0s"
+  },
+  "status": {
+    "version": 1,
+    "formatVersion": "1.1.0",
+    "expiration": "2022-10-01T20:08:03Z",
+    "phase": "Completed",
+    "startTimestamp": "2022-09-01T20:08:03Z",
+    "completionTimestamp": "2022-09-01T20:12:30Z",
+    "progress": {
+      "totalItems": 1634,
+      "itemsBackedUp": 1634
+    }
+  }
+}
