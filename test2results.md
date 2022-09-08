@@ -182,7 +182,7 @@ zookeeper-0                                                   0/1     Error     
 ```
 
 pod:
-audit-trail-service-78ff684448-zd86r,
+1. audit-trail-service-78ff684448-zd86r,
 gov-app-config-service-d467c96c9-cv684,
 gov-user-prefs-service-858ddddcd-z6rc2,
 ia-analysis-8f54b7d69-fvh95,
@@ -195,7 +195,14 @@ SQL State : 08001
 Error Code : -4499
 Message : [jcc][t4][2043][11550][4.26.14] Exception java.net.ConnectException: Error opening socket to server c-db2oltp-iis-db2u/172.30.155.206 on port 50,000 with message: Connection timed out (Connection timed out). ERRORCODE=-4499, SQLSTATE=08001
 ```
-catalog-api-6c67fbb74-bhfm7
+reason:
+```sh
+create Pod c-db2oltp-iis-db2u-0 in StatefulSet c-db2oltp-iis-db2u failed error: Pod "c-db2oltp-iis-db2u-0" is invalid: [spec.volumes[10].secret.secretName: Required value, spec.containers[0].volumeMounts[10].name: Not found: "db2ssl"]
+There is no such secret either in backup or restore
+
+```
+
+2. catalog-api-6c67fbb74-bhfm7
 ```sh
 Caused by (repeated) ... : com.ibm.catalog.unified.exceptions.CatalogException: Failed to initialize ICP4DAuthUtils
 at com.ibm.catalog.unified.security.ICP4DAuthUtils.<init>(ICP4DAuthUtils.java:140)
@@ -219,16 +226,20 @@ at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.j
 at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
 at com.ibm.catalog.unified.utils.RESTUtils.executeRequestAndProcess(RESTUtils.java:672)
 ```
+reason: 
+No.8 pods ibm-nginx-554bf9d9b8-v9frx crashing
 
-c-ibm-dmc-1660756001756623-redis-m-0
+3. c-ibm-dmc-1660756001756623-redis-m-0
 ```sh
 23881:C 02 Sep 2022 04:26:03.956 # Configuration loaded
 23881:M 02 Sep 2022 04:26:03.957 # Can't open the append-only file: Permission denied
 23882:C 02 Sep 2022 04:26:04.987 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
 23882:C 02 Sep 2022 04:26:04.987 # Redis version=5.0.14, bits=64, commit=00000000, modified=0, pid=23882, just started
 ```
+reason:
+same reason as No.8
 
-dp-transform-6fcd75c994-gzw2m
+4. dp-transform-6fcd75c994-gzw2m
 ```sh
 16:06:25.671 [pool-1-thread-1] ERROR com.ibm.ilg.api.store.EntityStoreException - FNRRR1001E EDC00074 : The connection to the following database cannot be established because of the following error: jdbcConnectString: jdbc:db2://c-db2oltp-wkc-db2u:50001/LINEAGE:sslConnection=true;user=db2inst1;password=<hidden> Error code = -4499,SQLState = 08001, [jcc][t4][2043][11550][4.21.29] Exception java.net.ConnectException: Error opening socket to server c-db2oltp-wkc-db2u/172.30.9.205 on port 50,001 with message: Connection timed out (Connection timed out). ERRORCODE=-4499, SQLSTATE=08001.
 {"appname":"dp-transform","loglevel":"SEVERE","timestamp":{"dateTime":{"date":{"year":2022,"month":9,"day":2},"time":{"hour":16,"minute":6,"second":28,"nano":49000000}},"offset":{"totalSeconds":0},"zone":{"id":"GMT"}},"class":"com.ibm.wdp.transform.service.HeartbeatService","method":"getDashDBConnectionStatus","message_details":"[jcc][t4][2043][11550][4.21.29] Exception java.net.ConnectException: Error opening socket to server c-db2oltp-wkc-db2u/172.30.9.205 on port 50,001 with message: Connection refused (Connection refused). ERRORCODE=-4499, SQLSTATE=08001","thread":"Default Executor-thread-57","exception":"\ncom.ibm.db2.jcc.am.DisconnectNonTransientConnectionException: [jcc][t4][2043][11550][4.21.29] Exception java.net.ConnectException: Error opening socket to server c-db2oltp-wkc-db2u/172.30.9.205 on port 50,001 with message: Connection refused (Connection refused). ERRORCODE=-4499, SQLSTATE=08001\n\tat com.ibm.db2.jcc.am.kd.a(kd.java:338)\n\tat com.ibm.db2.jcc.am.kd.a(kd.java:435)\n\tat com.ibm.db2.jc...
@@ -240,7 +251,12 @@ dp-transform-6fcd75c994-gzw2m
 16:06:35.090 [pool-1-thread-1] ERROR com.ibm.ilg.api.store.EntityStoreException - FNRRR1001E EDC00074 : The connection to the following database cannot be established because of the following error: jdbcConnectString: jdbc:db2://c-db2oltp-wkc-db2u:50001/LINEAGE:sslConnection=true;user=db2inst1;password=<hidden> Error code = -4499,SQLState = 08001, [jcc][t4][2043][11550][4.21.29] Exception java.net.ConnectException: Error opening socket to server c-db2oltp-wkc-db2u/172.30.9.205 on port 50,001 with message: Connection refused (Connection refused). ERRORCODE=-4499, SQLSTATE=08001.
 16:06:36.306 [pool-1-thread-1] ERROR com.ibm.ilg.api.store.EntityStoreException - FNRRR1001E EDC00074 : The connection to the following database cannot be established because of the following error: jdbcConnectString: jdbc:db2://c-db2oltp-wkc-db2u:50001/LINEAGE:sslConnection=true;user=db2inst1;password=<hidden> Error code = -4499,SQLState = 08001, [jcc][t4][2043][11550][4.21.29] Exception java.net.ConnectException: Error opening socket to server c-db2oltp-wkc-db2u/172.30.9.205 on port 50,001 with message: Connection refused (Connection refused). ERRORCODE=-4499, SQLSTATE=08001.
 ```
-gov-catalog-search-index-c8f9c765b-fb8kw
+reason:
+```sh
+create Pod c-db2oltp-wkc-db2u-0 in StatefulSet c-db2oltp-wkc-db2u failed error: Pod "c-db2oltp-wkc-db2u-0" is invalid: [spec.volumes[10].secret.secretName: Required value, spec.containers[0].volumeMounts[10].name: Not found: "db2ssl"]
+```
+
+5. gov-catalog-search-index-c8f9c765b-fb8kw
 ```sh
 ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...
 SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
@@ -257,7 +273,7 @@ at org.apache.kafka.clients.ClientUtils.parseAndValidateAddresses(ClientUtils.ja
 at org.apache.kafka.clients.producer.KafkaProducer.<init>(KafkaProducer.java:413)
 ... 5 more
 ```
-ibm-dmc-1660756001756623-admin-79d7b79bbb-csl6t
+6. ibm-dmc-1660756001756623-admin-79d7b79bbb-csl6t
 ibm-dmc-1660756001756623-dbapi-5fdc694b5b-f58lv
 ibm-dmc-1660756001756623-explain-567678697d-j6m5s
 ibm-dmc-1660756001756623-runsql-0
@@ -292,21 +308,40 @@ Server dsweb start failed. Check server logs for details.
 Start failed. Please try to start manually.
 2022-09-02 16:13:38 : Console started failed!
 ```
-ibm-dmc-1660756001756623-nginx-5444855fc7-6phgf
+
+7. ibm-dmc-1660756001756623-nginx-5444855fc7-6phgf
 ```sh
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Connection to ::1 failed: Connection refused.
 Ncat: Trying next address...
 Ncat: Connection refused.
 ```
-ibm-nginx-554bf9d9b8-gtzjq, ibm-nginx-tester-b4656f796-jdl9s
+8. ibm-nginx-554bf9d9b8-gtzjq, ibm-nginx-tester-b4656f796-jdl9s
 ```sh
 starting up
 cp: cannot remove '/user-home/_global_/config/dsxl_version.txt': Permission denied
 Setting up ssl certificate files...
 Custom ssl certs not found. Processing default out-of-the-box self-signed certificate files...
 ```
-kafka-0
+reason:
+```sh
+in the pod yaml file: 
+      securityContext:
+        runAsUser: 1000670000
+        runAsNonRoot: true
+        
+ls -l /user-home/_global_/config/dsxl_version.txt
+-rwxr-xr-x. 1 1000740000 root 21 Aug 16 07:27 /user-home/_global_/config/dsxl_version.txt
+
+df
+Filesystem                                                                                                                                            1K-blocks     Used Available Use% Mounted on
+172.30.99.60:6789,172.30.26.51:6789,172.30.96.142:6789:/volumes/csi/csi-vol-ba031a60-1d32-11ed-8653-0a58ac19201a/a63672de-8cf7-4f60-b492-7f9c82a2ac8d  10485760   266240  10219520   3% /user-home
+
+current cpd-instance ns has userID as 1000670000
+There is a mismatch in the userid. Could be the userID changed when recreate ns, but the mounted volume of /user-home does not changed the userID.
+```
+
+9. kafka-0
 ```sh
 [2022-09-02 16:22:41,095] ERROR Unable to resolve address: zookeeper:2181 (org.apache.zookeeper.client.StaticHostProvider)
 java.net.UnknownHostException: zookeeper
