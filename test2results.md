@@ -197,7 +197,27 @@ Message : [jcc][t4][2043][11550][4.26.14] Exception java.net.ConnectException: E
 ```
 catalog-api-6c67fbb74-bhfm7
 ```sh
-{"appname":"wdp-catalog","level":"ERROR","timestamp":"2022-09-02T16:11:38.991Z","cams_instance_id":"cams-catalog-api-6c67fbb74-bhfm7-c55deceb-1d73-4e82-91ba-00dd65a49a88","auditLog":false,"thread_id":172,"thread":"Default Executor-thread-23","class":"com.ibm.catalog.CatalogContextListener","line":296,"method":"contextInitialized","message":"COMSV1003E: Error initializing Catalog Service 'null'","stack_trace":"java.lang.IllegalThreadStateException\n\tat java.base/java.lang.Thread.start(Unknown Source)\n\tat com.ibm.catalog.v2.controllers.asset.AsynchronousAssetDeleteThreadGroup.start(AsynchronousAssetDeleteThreadGroup.java:28)\n\tat com.ibm.catalog.v2.controllers.asset.DefaultAsynchronousAssetDeleteProcessor.startBackgroundThreads(DefaultAsynchronousAssetDeleteProcessor.java:72)\n\tat com.ibm.catalog.v2.controllers.asset.AssetDeleteManager.start(AssetDeleteManager.java:47)\n\tat com.ibm.catalog.CatalogContextListener.contextInitialized(CatalogContextListener.java:293)\n\tat com.ibm.ws.webcontainer.webapp.We...
+Caused by (repeated) ... : com.ibm.catalog.unified.exceptions.CatalogException: Failed to initialize ICP4DAuthUtils
+at com.ibm.catalog.unified.security.ICP4DAuthUtils.<init>(ICP4DAuthUtils.java:140)
+at com.ibm.catalog.unified.security.ICP4DAuthUtils.getInstance(ICP4DAuthUtils.java:83)
+at com.ibm.catalog.unified.security.auth.ICP4DAuthProvider.retrieveUserInfo(ICP4DAuthProvider.java:19)
+at com.ibm.catalog.unified.security.SecurityUtilsBase.retrieveUserInfo(SecurityUtilsBase.java:509)
+at com.ibm.catalog.openmetadata.stats.OmrsStatisticsSender.<init>(OmrsStatisticsSender.java:93)
+at com.ibm.catalog.openmetadata.stats.OmrsStatisticsSender.getInstance(OmrsStatisticsSender.java:65)
+at com.ibm.catalog.CatalogContextListener.contextInitialized(CatalogContextListener.java:328)
+... 2 more
+Caused by: org.apache.http.conn.ConnectTimeoutException: Connect to internal-nginx-svc.cpd-instance.svc:12443 [internal-nginx-svc.cpd-instance.svc/172.30.135.77] failed: connect timed out
+at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+at org.apache.http.impl.execchain.ServiceUnavailableRetryExec.execute(ServiceUnavailableRetryExec.java:85)
+at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+at com.ibm.catalog.unified.utils.RESTUtils.executeRequestAndProcess(RESTUtils.java:672)
 ```
 
 c-ibm-dmc-1660756001756623-redis-m-0
