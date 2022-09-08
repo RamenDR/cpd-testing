@@ -48,13 +48,14 @@ restore:
   procedure:
   ```sh
   1. create cpd-instance ns
-  2. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
-  3. check if pods are coming back in cpd-instance ns
-  4. run hook br-service-hooks/post-workload (post-workload.sh)
-  5. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) in cpd-instance ns as primary and wait for clusterdataready
-  6. check if cpd-instance ns resources are restored: 
+  2. modify ns to the backuped ns uid: 1000740000 ($kubectl edit ns cpd-instance)
+  3. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
+  4. check if pods are coming back in cpd-instance ns
+  5. run hook br-service-hooks/post-workload (post-workload.sh)
+  6. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) in cpd-instance ns as primary and wait for clusterdataready
+  7. check if cpd-instance ns resources are restored: 
   (cpd-cli can be installed here: https://github.com/IBM/cpd-cli)
   cpd-cli manage get-cr-status --cpd_instance_ns=cpd-instance
-  7. check web console of cp4d: 
+  8. check web console of cp4d: 
   cpd-cli manage get-cpd-instance-details --cpd_instance_ns=cpd-instance --get_admin_initial_credentials=true
   ```
