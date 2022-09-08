@@ -30,7 +30,7 @@ backup:
   7. delete cpd-instance ns following instructions here: (delete-cpd-instance.sh)
   https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=bured-scenario-backing-up-restoring-instance-cloud-pak-data-same-cluster 
   ```
-  
+vrg backup:  
 restore:
   recipe:
   ```sh
