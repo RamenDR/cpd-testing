@@ -52,6 +52,7 @@ restore:
   (3. re-restore: kubectl annotate pv $i volumereplicationgroups.ramendr.openshift.io/ramen-restore- )
   3. create [vrg-restore-1](vrg-restore-1.yaml) in cpd-instance ns as primary and wait for clusterdataready
   4. check if pods are coming back in cpd-instance ns
+  4.5. https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=dbs-worker-pods-are-not-running-after-you-do-backup-restore-oadp-backup-restore-utility follow this solution to restore wkc
   5. run hook br-service-hooks/post-workload (post-workload.sh)
   6. delete [vrg-restore-1](vrg-restore-1.yaml) and create [vrg-restore-2](vrg-restore-2.yaml) in cpd-instance ns as primary and wait for clusterdataready
   7. check if cpd-instance ns resources are restored: 
