@@ -1,0 +1,20 @@
+---
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: VolumeReplicationGroup
+metadata:
+  name: wp
+  namespace: wordsqlapp
+spec:
+  async:
+    mode: Disabled
+    replicationClassSelector: {}
+    schedulingInterval: 1m
+  pvcSelector: {}
+  kubeObjectProtection: {}
+  replicationState: primary
+  s3Profiles:
+   - minio-on-cluster1
+  sync:
+    mode: Enabled
+  volSync:
+    disabled: true

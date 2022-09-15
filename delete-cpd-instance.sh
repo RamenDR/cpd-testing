@@ -97,8 +97,8 @@ done
 pvc=$(oc get pvc -n $ns | awk '{print $1}')
 for i in $pvc
 do
+    timeout 5 oc delete pvc $i -n $ns
     oc patch pvc $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
-    oc delete pvc $i -n $ns
 done
 
 vrg=$(oc get vrg -n $ns | awk '{print $1}')
@@ -106,6 +106,13 @@ for i in $vrg
 do
     oc patch vrg $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
     oc delete vrg $i -n $ns
+done
+
+svc=$(oc get svc -n $ns | awk '{print $1}')
+for i in $svc
+do
+    oc patch svc $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete svc $i -n $ns
 done
 
 
