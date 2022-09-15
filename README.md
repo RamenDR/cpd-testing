@@ -8,6 +8,7 @@
 |1|VRGs|1|CPD undeploy procedure||`KubeObjectProtection: includeClusterResources: true` | [vrgs-cpd-everything.yaml](vrgs-cpd-everything.yaml)| | https://ibm-research.slack.com/archives/G01EC1VVA56/p1661445646846479
 |1|none|1-11 (new steps added)|[Offline procedure: Delete namespace, remove finalizers](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=obr-scenario-creating-offline-backup-cloud-pak-data-instance-restoring-it-same-cluster#concept_qpy_zpj_wqb__delete_namespaces) [delete-cpd-instance.sh](delete-cpd-instance.sh)|options:<ul><li>VRG spec 1, hook, VRG spec 2<li>velero hooks<li>SPP method?<li>other, use option 1 in test | [test procedure](test2procedure.md) | [vrg-capture.yaml](vrg-capture.yaml) [vrg-restore-1.yaml](vrg-restore-1.yaml) [vrg-restore-2.yaml](vrg-restore-2.yaml) | [test result](test2results.md) | https://ibm-research.slack.com/archives/G01EC1VVA56/p1661795759986199 https://ibm-research.slack.com/archives/G01EC1VVA56/p1661796307489459 https://ibm-research.slack.com/archives/G01EC1VVA56/p1661796526936669
 |2|cpd-br tool?|1-11||
+|1|wordpress testing|N/A|N/A|N/A|wp-procedure | vrg.yaml|wp-results | 
 	
 ## CPD deploy steps:
 1. create cp4d foundation services
