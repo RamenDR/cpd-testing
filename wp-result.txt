@@ -309,4 +309,6 @@ status:
 This is because the openshift.io/scc: restricted is still using restricted, but anyuid is required.
 
 solution:
-delete the pod and wait for recreation. After recreation, the pod shows running and showing openshift.io/scc: anyuid. This could be because the serviceaccounts were not restored at first and still uses restricted scc first. After they are restored as anyuid, the pod needs to be recreated using the anyuid scc to apply the changes.
+delete the pod and wait for recreation. After recreation, the pod shows running and showing openshift.io/scc: anyuid. 
+This could be because the serviceaccounts were not restored at first and still uses restricted scc first. 
+After they are restored as anyuid, the pod needs to be recreated using the anyuid scc to apply the changes.
