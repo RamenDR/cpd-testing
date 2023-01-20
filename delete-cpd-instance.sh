@@ -1,3 +1,5 @@
+kubectl patch vrg ci -n cpd-instance -p '{"spec":{"replicationState": "secondary"}}' --type=merge
+sleep 5
 ns=cpd-instance
 oc delete client -n $ns --all
 # Get CCS CR, delete finalizers and delete CR
@@ -115,7 +117,12 @@ do
     oc delete svc $i -n $ns
 done
 
-
+runtime=$(oc get runtimeassemblies.runtimes.ibm.com  -n $ns | awk '{print $1}')
+for i in $runtime
+do
+    oc patch runtimeassemblies.runtimes.ibm.com $i -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
+    oc delete runtimeassemblies.runtimes.ibm.com $i -n $ns
+done
 
 oc patch rolebinding admin -n $ns -p '{"metadata":{"finalizers":[]}}' --type=merge
 #oc edit namespacescope cpd-operators -n $ns

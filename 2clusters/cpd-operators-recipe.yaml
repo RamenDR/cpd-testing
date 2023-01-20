@@ -1,0 +1,64 @@
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: Recipe
+metadata:
+  labels:
+    icpdsupport/addOnId: cpdbr
+    icpdsupport/app: br-service
+  name: ibmcpd-operators
+spec:
+  appType: cpd-operators
+  groups:
+  - labelSelector: app=icp-bedrock-backup
+    name: cpd-operators-volumes
+    type: volume
+  - includedResourceTypes:
+    - operatorgroups
+    - scheduling
+    - configmaps
+    - recipe.spp-data-protection.isf.ibm.com
+    - deployment
+    - serviceaccount
+    - rolebinding
+    name: cpd-operators-resources
+    type: resource
+  - backupRef: cpd-operators-resources
+    excludedResourceTypes:
+    - configmaps
+    - deployment
+    - serviceaccount
+    - rolebinding
+    name: cpd-operators-ns-resources
+    type: resource
+  - backupRef: cpd-operators-resources
+    includedResourceTypes:
+    - configmaps
+    - deployment
+    - serviceaccount
+    - rolebinding
+    labelSelector: icpdsupport/addOnId=cpdbr,icpdsupport/app=br-service
+    name: cpd-operators-br-resources
+    type: resource
+  hooks:
+  - labelSelector: icpdsupport/addOnId=cpdbr,icpdsupport/app=br-service
+    name: br-service-hooks
+    namespace: cpd-operators
+    ops:
+    - command: '["/cpdbr-scripts/cpdops/files/cpd-operators.sh", "backup", "--backup-iam-data", "--operators-namespace", "cpd-operators", "--foundation-namespace", "ibm-common-services"]'
+      container: main
+      name: operators-backup
+      timeout: 600
+    - command: '["/cpdbr-scripts/cpdops/files/cpd-operators.sh", "restore", "--operators-namespace", "cpd-operators", "--foundation-namespace", "ibm-common-services"]'
+      container: main
+      name: operators-restore
+      timeout: 7200
+    type: exec
+  workflows:
+  - name: capture
+    sequence:
+    - hook: br-service-hooks/operators-backup
+    - group: cpd-operators-resources
+  - name: recover
+    sequence:
+    - group: cpd-operators-ns-resources
+    - group: cpd-operators-br-resources
+    - hook: br-service-hooks/operators-restore

@@ -1,0 +1,77 @@
+apiVersion: ramendr.openshift.io/v1alpha1
+kind: Recipe
+metadata:
+  labels:
+    icpdsupport/addOnId: cpdbr
+    icpdsupport/app: br-service
+  name: ibmcpd-dr
+  namespace: cpd-instance
+spec:
+  appType: cpd-instance  # required, but not currently used
+  groups:
+  - name: cpd-instance-volumes
+    type: volume
+    labelSelector: icpdsupport/empty-on-nd-backup notin (true),icpdsupport/ignore-on-nd-backup notin (true)
+  - name: cpd-instance-resources
+    type: resource
+    excludedResourceTypes:
+    - event
+    - event.events.k8s.io
+    labelSelector: icpdsupport/ignore-on-nd-backup notin (true)
+  - name: cpd-instance-pre-workload-resources
+    backupRef: cpd-instance-resources
+    type: resource
+    includeClusterResources: true
+    excludedResourceTypes:
+    - deployments.apps
+    - statefulsets.apps
+    - daemonsets.apps
+    - replicasets.apps
+    - controllerrevisions.apps
+    - cronjobs.batch
+    - jobs.batch
+    - pods
+    - operandrequests.operator.ibm.com
+    - clients
+    - imagetags.openshift.io
+  - name: cpd-instance-workload-resources
+    backupRef: cpd-instance-resources
+    type: resource
+    includedResourceTypes:
+    - deployments.apps
+    - statefulsets.apps
+    - daemonsets.apps
+    - replicasets.apps
+    - controllerrevisions.apps
+    - cronjobs.batch
+    - jobs.batch
+  - name: cpd-instance-operator-resources
+    backupRef: cpd-instance-resources
+    type: resource
+    includedResourceTypes:
+    - operandrequests.operator.ibm.com
+  hooks:
+  - name: br-service-hooks
+    namespace: cpd-instance
+    labelSelector: icpdsupport/addOnId=cpdbr,icpdsupport/app=br-service
+    ops:
+    - name: checkpoint
+      container: main
+      command: '["/cpdbr-scripts/cpdbr/checkpoint_create.sh", "--include-namespaces=cpd-instance"]'  # must exist in 'main' container
+      timeout: 1800
+    - name: post-workload
+      container: main
+      command: '["/cpdbr-scripts/cpdbr/checkpoint_restore_posthooks.sh", "--scale-wait-timeout=30m", "--include-namespaces=cpd-instance"]'  # must exist in 'main' container
+      timeout: 7200
+    type: exec
+  workflows:
+  - name: capture  # referenced in VRG
+    sequence:
+    - hook: br-service-hooks/checkpoint
+    - group: cpd-instance-resources
+  - name: recover  # referenced in VRG
+    sequence:
+    - group: cpd-instance-pre-workload-resources
+    - group: cpd-instance-workload-resources
+    - hook: br-service-hooks/post-workload
+    - group: cpd-instance-operator-resources
