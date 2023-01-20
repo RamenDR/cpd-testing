@@ -5,6 +5,7 @@ metadata:
     icpdsupport/addOnId: cpdbr
     icpdsupport/app: br-service
   name: ibmcpd-operators
+  namespace: cpd-operators
 spec:
   appType: cpd-operators
   groups:
