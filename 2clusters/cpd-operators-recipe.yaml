@@ -44,11 +44,24 @@ spec:
     name: br-service-hooks
     namespace: cpd-operators
     ops:
-    - command: '["/cpdbr-scripts/cpdops/files/cpd-operators.sh", "backup", "--backup-iam-data", "--operators-namespace", "cpd-operators", "--foundation-namespace", "ibm-common-services"]'
+    - command: 
+      - "/cpdbr-scripts/cpdops/files/cpd-operators.sh"
+      - "backup"
+      - "--backup-iam-data"
+      - "--operators-namespace"
+      - "cpd-operators"
+      - "--foundation-namespace"
+      - "ibm-common-services"
       container: main
       name: operators-backup
       timeout: 600
-    - command: '["/cpdbr-scripts/cpdops/files/cpd-operators.sh", "restore", "--operators-namespace", "cpd-operators", "--foundation-namespace", "ibm-common-services"]'
+    - command: 
+      - "/cpdbr-scripts/cpdops/files/cpd-operators.sh"
+      - "restore"
+      - "--operators-namespace"
+      - "cpd-operators"
+      - "--foundation-namespace"
+      - "ibm-common-services"
       container: main
       name: operators-restore
       timeout: 7200

@@ -57,11 +57,16 @@ spec:
     ops:
     - name: checkpoint
       container: main
-      command: '["/cpdbr-scripts/cpdbr/checkpoint_create.sh", "--include-namespaces=cpd-instance"]'  # must exist in 'main' container
+      command: 
+      - "/cpdbr-scripts/cpdbr/checkpoint_create.sh" 
+      - "--include-namespaces=cpd-instance"  # must exist in 'main' container
       timeout: 1800
     - name: post-workload
       container: main
-      command: '["/cpdbr-scripts/cpdbr/checkpoint_restore_posthooks.sh", "--scale-wait-timeout=30m", "--include-namespaces=cpd-instance"]'  # must exist in 'main' container
+      command: 
+      - "/cpdbr-scripts/cpdbr/checkpoint_restore_posthooks.sh"
+      - "--scale-wait-timeout=30m"
+      - "--include-namespaces=cpd-instance"  # must exist in 'main' container
       timeout: 7200
     type: exec
   workflows:
