@@ -31,4 +31,9 @@ read -p "Press enter to continue"
 kubectl create -f ../cpd-operators-recipe.yaml
 read -p "Press enter to continue"
 kubectl create -f ../cpd-operators-vrg.yaml 
-../wait_for_dr_ready.sh
+while true
+do
+       echo "wait for vrg/co dataready"
+       kubectl -n cpd-operators wait vrg/co --for condition=dataready --timeout 0m
+       sleep 3
+done

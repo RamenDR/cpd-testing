@@ -28,6 +28,9 @@ done
 ../cpdbr-oadp install --foundation-namespace=ibm-common-services --operators-namespace=cpd-operators --component=cpdbr-ops-hooks --cpdbr-hooks-image-prefix=quay.io/cpdsre --log-level=debug --verbose
 ../cpdbr-oadp uninstall --cpd-namespace=cpd-instance --component=cpdbr-hooks --log-level=debug --verbose
 ../cpdbr-oadp install --cpd-namespace=cpd-instance --component=cpdbr-hooks --cpdbr-hooks-image-prefix=quay.io/cpdsre --log-level=debug --verbose
+cpd-cli oadp backup prehooks -n openshift-adp --hook-kind=checkpoint --cpd-namespace cpd-instance --include-namespaces=cpd-instance
+cpd-cli oadp backup posthooks -n openshift-adp --hook-kind=checkpoint --cpd-namespace cpd-instance --include-namespaces=cpd-instance
+
 read -p "Press enter to continue"
 kubectl create -f ../cpd-operators-recipe.yaml
 read -p "Press enter to continue"
