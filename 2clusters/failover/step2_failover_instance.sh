@@ -7,5 +7,4 @@ read -p "Press enter to continue"
 kubectl create -f ../cpd-instance-recipe.yaml
 read -p "Press enter to continue"
 kubectl create -f ../cpd-instance-vrg.yaml 
-sleep 200
-../wait_for_dr_ready.sh
+
