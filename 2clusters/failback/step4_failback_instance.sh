@@ -7,4 +7,3 @@ read -p "Press enter to continue"
 kubectl create -f ../cpd-instance-recipe.yaml
 read -p "Press enter to continue"
 kubectl apply -f ../cpd-instance-vrg.yaml 
-../wait_for_dr_ready.sh
