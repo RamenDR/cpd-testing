@@ -5,7 +5,7 @@ metadata:
     icpdsupport/addOnId: cpdbr
     icpdsupport/app: br-service
   name: ibmcpd-operators
-  namespace: cpd-operators
+  namespace: ibm-common-services 
 spec:
   appType: cpd-operators
   groups:
@@ -42,14 +42,14 @@ spec:
   hooks:
   - labelSelector: icpdsupport/addOnId=cpdbr,icpdsupport/app=br-service
     name: br-service-hooks
-    namespace: cpd-operators
+    namespace: ibm-common-services 
     ops:
     - command: 
       - "/cpdbr-scripts/cpdops/files/cpd-operators.sh"
       - "backup"
       - "--backup-iam-data"
       - "--operators-namespace"
-      - "cpd-operators"
+      - "ibm-common-services"
       - "--foundation-namespace"
       - "ibm-common-services"
       container: main
@@ -59,7 +59,7 @@ spec:
       - "/cpdbr-scripts/cpdops/files/cpd-operators.sh"
       - "restore"
       - "--operators-namespace"
-      - "cpd-operators"
+      - "ibm-common-services"
       - "--foundation-namespace"
       - "ibm-common-services"
       container: main

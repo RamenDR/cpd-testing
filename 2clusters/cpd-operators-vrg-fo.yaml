@@ -2,20 +2,23 @@
 apiVersion: ramendr.openshift.io/v1alpha1
 kind: VolumeReplicationGroup
 metadata:
-  name: ci
-  namespace: cpd-instance
+  name: co
+  namespace: ibm-common-services 
 spec:
   pvcSelector: {}
   replicationState: primary
   s3Profiles:
   - s3profile-cluster6-ocs-external-storagecluster
   - s3profile-cluster8-ocs-external-storagecluster
-  sync: {}
+  sync:
+    mode: Enabled
   volSync:
     disabled: true
   kubeObjectProtection:
     recipeRef:
-      name: ibmcpd-dr
+      name: ibmcpd-operators
       captureWorkflowName: capture
       recoverWorkflowName: recover
-      volumeGroupName: cpd-instance-volumes 
+      volumeGroupName: cpd-operators-volumes 
+  action:
+    Failover
