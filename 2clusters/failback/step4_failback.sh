@@ -31,4 +31,3 @@ read -p "Press enter to continue"
 kubectl create -f ../cpd-operators-recipe.yaml
 read -p "Press enter to continue"
 kubectl apply -f ../cpd-operators-vrg.yaml 
-../wait_for_dr_ready.sh
