@@ -14,19 +14,16 @@ cpd-cli manage login-to-ocp \
 --password=${OCP_PASSWORD} \
 --server=${OCP_URL}
 
+vrg=$(oc get vrg -n ibm-common-services | awk '{print $1}' | sed -n '2p')
+kubectl patch vrg/$vrg --type=merge -p '{"spec":{"replicationState":"primary"}}' -n ibm-common-services 
+sleep 120
+kubectl delete vrg $vrg -n ibm-common-services
+
 cpd-cli manage delete-olm-artifacts --cpd_operator_ns=${PROJECT_CPD_OPS}
 
-oc delete project ${PROJECT_CPD_OPS}
+oc delete project ${PROJECT_CPD_OPS} &
 sleep 300
 oc api-resources --verbs=list --namespaced -o name | xargs -n 1 oc get --show-kind --ignore-not-found -n ${PROJECT_CPD_OPS} -o name 2>/dev/null | grep -v packagemanifest | xargs oc patch -p '{"metadata":{"finalizers":[]}}' --type=merge -n ${PROJECT_CPD_OPS}
-oc get project ${PROJECT_CPD_OPS} -o jsonpath="{.status}"
-kubectl delete ns ${PROJECT_CPD_OPS}
-
-oc delete project ${PROJECT_CPFS_OPS}
-sleep 300
-oc api-resources --verbs=list --namespaced -o name | xargs -n 1 oc get --show-kind --ignore-not-found -n ${PROJECT_CPFS_OPS} -o name 2>/dev/null | grep -v packagemanifest | xargs oc patch -p '{"metadata":{"finalizers":[]}}' --type=merge -n ${PROJECT_CPFS_OPS}
-oc get project ${PROJECT_CPFS_OPS} -o jsonpath="{.status}"
-kubectl delete ns ${PROJECT_CPFS_OPS}
 kubectl delete validatingwebhookconfiguration ibm-cs-ns-mapping-webhook-configuration
 catsrc=$(kubectl get catsrc -n openshift-marketplace  | grep IBM | awk '{print $1}')
 for i in $catsrc
