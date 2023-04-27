@@ -1,0 +1,19 @@
+apiVersion: csiaddons.openshift.io/v1alpha1
+kind: NetworkFence
+metadata:
+  name: network-fence-cluster6
+spec:
+  cidrs:
+  - 10.39.29.198/32
+  - 10.39.29.209/32
+  - 10.39.29.183/32
+  - 10.39.29.235/32
+  - 10.39.29.218/32
+  - 10.39.29.216/32
+  driver: openshift-storage.rbd.csi.ceph.com
+  fenceState: Unfenced
+  parameters:
+    clusterID: openshift-storage
+  secret:
+    name: rook-csi-rbd-provisioner
+    namespace: openshift-storage
