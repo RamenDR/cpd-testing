@@ -1,6 +1,6 @@
 source env.sh
 /nfs/OCP-installer/oclogincluster $primary
-../cpdbr-oadp uninstall --foundation-namespace=ibm-common-services --operators-namespace=cpd-operators --component=cpdbr-ops-hooks --log-level=debug --verbose
+../cpdbr-oadp uninstall --foundation-namespace=ibm-common-services --operators-namespace=ibm-common-services --component=cpdbr-ops-hooks --log-level=debug --verbose
 cpdbr=$(kubectl get clusterrole -A | grep cpdbr | awk '{print $1}')
 echo $cpdbr
 for i in $cpdbr
@@ -26,7 +26,7 @@ do
         kubectl delete sa $i -n openshift-marketplace
 done
 read -p "Press enter to continue"
-../cpdbr-oadp install --foundation-namespace=ibm-common-services --operators-namespace=cpd-operators --component=cpdbr-ops-hooks --cpdbr-hooks-image-prefix=quay.io/cpdsre --log-level=debug --verbose
+../cpdbr-oadp install --foundation-namespace=ibm-common-services --operators-namespace=ibm-common-services --component=cpdbr-ops-hooks --cpdbr-hooks-image-prefix=quay.io/cpdsre --log-level=debug --verbose
 read -p "Press enter to continue"
 kubectl create -f ../cpd-operators-recipe.yaml
 read -p "Press enter to continue"
