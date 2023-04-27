@@ -1,3 +1,3 @@
-primary=cluster5
-secondary=cluster7
-ns=cpd-operators
+primary=cluster6
+secondary=cluster8
+ns=ibm-common-services
